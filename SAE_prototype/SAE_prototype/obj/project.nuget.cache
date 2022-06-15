@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "DVxkP37Vlyg10NgaTxR/v03FWE+u1NqQUqb5V+uuriEbSnhoMlsyoNAh3wBn8Sm2QKESVmlCTPCBpKGr04589A==",
+  "dgSpecHash": "ExbM5BEA6Dqc8pN7Jg+2431nAlhYjq3jHIQ/wBb0hqIf0J4VJnsZmrFUjDB/CkvQUznHYo4j6NPk8vRt5iw72A==",
   "success": true,
-  "projectFilePath": "P:\\SAE 2.01\\SAE_prototype\\SAE_prototype\\SAE_prototype.csproj",
+  "projectFilePath": "P:\\SAE 2.01\\SAE 2_01\\SAE_prototype\\SAE_prototype\\SAE_prototype.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ladretti\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\ladretti\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
