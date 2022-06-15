@@ -7,6 +7,15 @@ namespace SAE_prototype
 {
     public class DIVISION : Crud<DIVISION>
     {
+        public DIVISION()
+        {
+
+        }
+        public DIVISION(string libelleCDivision, int codeCorpsArmee)
+        {
+            this.LibelleCDivision = libelleCDivision;
+            this.CodeCorpsArmee = codeCorpsArmee;
+        }
         public int CodeDivision
         {
             get; set;

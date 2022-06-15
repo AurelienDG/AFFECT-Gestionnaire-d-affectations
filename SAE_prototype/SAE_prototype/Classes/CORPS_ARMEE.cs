@@ -7,6 +7,14 @@ namespace SAE_prototype
 {
 public class CORPS_ARMEE : Crud<CORPS_ARMEE>
     {
+        public CORPS_ARMEE()
+        {
+
+        }
+        public CORPS_ARMEE(string libelleCorpsArmee)
+        {
+            this.LibelleCorpsArmee = libelleCorpsArmee;
+        }
         public int CodeCorpsArmee
         {
             get; set;
@@ -14,10 +22,6 @@ public class CORPS_ARMEE : Crud<CORPS_ARMEE>
         public string LibelleCorpsArmee
         {
             get; set;
-        }
-
-        public CORPS_ARMEE()
-        {
         }
         public void Create()
         {

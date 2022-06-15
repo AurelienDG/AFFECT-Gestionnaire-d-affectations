@@ -53,3 +53,31 @@ P:\SAE 2.01\SAE 2_01\SAE_prototype\SAE_prototype\obj\Debug\netcoreapp3.1\SAE_pro
 P:\SAE 2.01\SAE 2_01\SAE_prototype\SAE_prototype\obj\Debug\netcoreapp3.1\SAE_prototype.dll
 P:\SAE 2.01\SAE 2_01\SAE_prototype\SAE_prototype\obj\Debug\netcoreapp3.1\SAE_prototype.pdb
 P:\SAE 2.01\SAE 2_01\SAE_prototype\SAE_prototype\obj\Debug\netcoreapp3.1\SAE_prototype.genruntimeconfig.cache
+C:\Users\ladre\OneDrive\Bureau\SAE 2_01\SAE_prototype\SAE_prototype\bin\Debug\netcoreapp3.1\SAE_prototype.exe
+C:\Users\ladre\OneDrive\Bureau\SAE 2_01\SAE_prototype\SAE_prototype\bin\Debug\netcoreapp3.1\SAE_prototype.deps.json
+C:\Users\ladre\OneDrive\Bureau\SAE 2_01\SAE_prototype\SAE_prototype\bin\Debug\netcoreapp3.1\SAE_prototype.runtimeconfig.json
+C:\Users\ladre\OneDrive\Bureau\SAE 2_01\SAE_prototype\SAE_prototype\bin\Debug\netcoreapp3.1\SAE_prototype.runtimeconfig.dev.json
+C:\Users\ladre\OneDrive\Bureau\SAE 2_01\SAE_prototype\SAE_prototype\bin\Debug\netcoreapp3.1\SAE_prototype.dll
+C:\Users\ladre\OneDrive\Bureau\SAE 2_01\SAE_prototype\SAE_prototype\bin\Debug\netcoreapp3.1\SAE_prototype.pdb
+C:\Users\ladre\OneDrive\Bureau\SAE 2_01\SAE_prototype\SAE_prototype\bin\Debug\netcoreapp3.1\System.Data.SqlClient.dll
+C:\Users\ladre\OneDrive\Bureau\SAE 2_01\SAE_prototype\SAE_prototype\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\sni.dll
+C:\Users\ladre\OneDrive\Bureau\SAE 2_01\SAE_prototype\SAE_prototype\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\sni.dll
+C:\Users\ladre\OneDrive\Bureau\SAE 2_01\SAE_prototype\SAE_prototype\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
+C:\Users\ladre\OneDrive\Bureau\SAE 2_01\SAE_prototype\SAE_prototype\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\ladre\OneDrive\Bureau\SAE 2_01\SAE_prototype\SAE_prototype\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\ladre\OneDrive\Bureau\SAE 2_01\SAE_prototype\SAE_prototype\obj\Debug\netcoreapp3.1\SAE_prototype.csproj.AssemblyReference.cache
+C:\Users\ladre\OneDrive\Bureau\SAE 2_01\SAE_prototype\SAE_prototype\obj\Debug\netcoreapp3.1\MainWindow.g.cs
+C:\Users\ladre\OneDrive\Bureau\SAE 2_01\SAE_prototype\SAE_prototype\obj\Debug\netcoreapp3.1\App.g.cs
+C:\Users\ladre\OneDrive\Bureau\SAE 2_01\SAE_prototype\SAE_prototype\obj\Debug\netcoreapp3.1\GeneratedInternalTypeHelper.g.cs
+C:\Users\ladre\OneDrive\Bureau\SAE 2_01\SAE_prototype\SAE_prototype\obj\Debug\netcoreapp3.1\SAE_prototype_MarkupCompile.cache
+C:\Users\ladre\OneDrive\Bureau\SAE 2_01\SAE_prototype\SAE_prototype\obj\Debug\netcoreapp3.1\SAE_prototype_MarkupCompile.lref
+C:\Users\ladre\OneDrive\Bureau\SAE 2_01\SAE_prototype\SAE_prototype\obj\Debug\netcoreapp3.1\MainWindow.baml
+C:\Users\ladre\OneDrive\Bureau\SAE 2_01\SAE_prototype\SAE_prototype\obj\Debug\netcoreapp3.1\SAE_prototype.g.resources
+C:\Users\ladre\OneDrive\Bureau\SAE 2_01\SAE_prototype\SAE_prototype\obj\Debug\netcoreapp3.1\SAE_prototype.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ladre\OneDrive\Bureau\SAE 2_01\SAE_prototype\SAE_prototype\obj\Debug\netcoreapp3.1\SAE_prototype.AssemblyInfoInputs.cache
+C:\Users\ladre\OneDrive\Bureau\SAE 2_01\SAE_prototype\SAE_prototype\obj\Debug\netcoreapp3.1\SAE_prototype.AssemblyInfo.cs
+C:\Users\ladre\OneDrive\Bureau\SAE 2_01\SAE_prototype\SAE_prototype\obj\Debug\netcoreapp3.1\SAE_prototype.csproj.CoreCompileInputs.cache
+C:\Users\ladre\OneDrive\Bureau\SAE 2_01\SAE_prototype\SAE_prototype\obj\Debug\netcoreapp3.1\SAE_prototype.csproj.CopyComplete
+C:\Users\ladre\OneDrive\Bureau\SAE 2_01\SAE_prototype\SAE_prototype\obj\Debug\netcoreapp3.1\SAE_prototype.dll
+C:\Users\ladre\OneDrive\Bureau\SAE 2_01\SAE_prototype\SAE_prototype\obj\Debug\netcoreapp3.1\SAE_prototype.pdb
+C:\Users\ladre\OneDrive\Bureau\SAE 2_01\SAE_prototype\SAE_prototype\obj\Debug\netcoreapp3.1\SAE_prototype.genruntimeconfig.cache

@@ -27,28 +27,29 @@
             <TabItem Header="Accueil">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
+                        <ColumnDefinition Width="115*" />
+                        <ColumnDefinition Width="282*"/>
                     </Grid.ColumnDefinitions>
                     <Image
-                        Margin="320,164,0,0"
+                        Margin="90,164,0,0"
                         Source="/bleueblancrouge.png"
-                        Stretch="Fill" />
+                        Stretch="Fill" Grid.Column="1" />
                     <Label
                         Width="558"
                         Height="56"
-                        Margin="0,147,0,0"
-                        HorizontalAlignment="Center"
+                        Margin="118,147,0,0"
+                        HorizontalAlignment="Left"
                         VerticalAlignment="Top"
-                        Content="&#x9;Bienvenue sur votre application qui vous permettra de gérer vos affectations.&#xA;Pour consulter, modifier ou créer une affectations dirigé vous dans l'onglet &quot;Consulter les Affectations&quot;." />
+                        Content="&#x9;Bienvenue sur votre application qui vous permettra de gérer vos affectations.&#xA;Pour consulter, modifier ou créer une affectations dirigé vous dans l'onglet &quot;Consulter les Affectations&quot;." Grid.ColumnSpan="2" />
                     <Label
                         Width="226"
                         Height="76"
-                        Margin="0,90,0,0"
-                        HorizontalAlignment="Center"
+                        Margin="54,90,0,0"
+                        HorizontalAlignment="Left"
                         VerticalAlignment="Top"
                         Content="ACCUEIL"
                         FontFamily="Britannic Bold"
-                        FontSize="48" />
+                        FontSize="48" Grid.Column="1" />
                 </Grid>
             </TabItem>
             <TabItem Header="Consulter les Affectations">
@@ -77,14 +78,15 @@
             <TabItem Header="Faire du pain">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="194*" />
-                        <ColumnDefinition Width="203*" />
+                        <ColumnDefinition Width="23*" />
+                        <ColumnDefinition Width="365*"/>
+                        <ColumnDefinition Width="406*" />
                     </Grid.ColumnDefinitions>
                     <ListView
                         x:Name="lvMission"
-                        Margin="48,42,48,42"
+                        Margin="25,42,48,42"
                         ItemsSource="{Binding listeMissions}"
-                        SelectionChanged="ListView_SelectionChanged">
+                        SelectionChanged="ListView_SelectionChanged" Grid.Column="1">
                         <ListView.View>
 
                             <GridView>
@@ -96,40 +98,30 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
-                    <Label
-                        x:Name="Bullshit"
-                        Grid.Column="1"
-                        Width="267"
-                        Height="65"
-                        Margin="102,92,0,0"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Top"
-                        Content="Label" />
-                    <Grid Grid.Row="1" DataContext="{Binding SelectedItem, ElementName=lvMission}" />
+                    <Grid DataContext="{Binding SelectedItem, ElementName=lvMission}" Grid.ColumnSpan="2" />
                     <Button
                         x:Name="Supprimer"
-                        Grid.Column="1"
+                        Grid.Column="2"
                         Width="170"
-                        Margin="156,142,0,0"
+                        Margin="133,62,0,0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
                         Click="Supprimer_Click"
                         Content="Supprimer" />
                     <TextBox
-                        x:Name="NomTextBox"
-                        Grid.Column="1"
+                        x:Name="TextBoxCreate"
+                        Grid.Column="2"
                         Width="75"
                         Height="20"
-                        Margin="66,299,0,0"
+                        Margin="5,162,0,0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
                         GotFocus="NomTextBox_GotFocus"
                         Text="Libelle"
                         TextWrapping="Wrap" />
-
                     <Button
                         x:Name="AjouterButton"
-                        Grid.Column="1"
+                        Grid.Column="2"
                         Width="48"
                         Margin="194,363,0,0"
                         HorizontalAlignment="Left"
@@ -138,30 +130,31 @@
                         Content="Ajouter" />
                     <TextBox
                         x:Name="ChangeNom"
-                        Grid.Column="1"
+                        Grid.Column="2"
                         Width="124"
                         Height="20"
-                        Margin="156,168,0,0"
+                        Margin="133,98,0,0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
                         Text="Modifier"
                         TextWrapping="Wrap" />
                     <Button
                         x:Name="ModifierButton"
-                        Grid.Column="1"
-                        Width="49"
-                        Margin="331,163,0,0"
+                        Grid.Column="2"
+                        Width="50"
+                        Margin="268,98,0,0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
                         Click="ModifierButton_Click"
                         Content="Modifier" />
-                    <ComboBox
-                        Grid.Column="1"
-                        Width="120"
-                        Margin="156,299,0,0"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Top"
-                        ItemsSource="{Binding listeDivisions}" />
+
+                    <ComboBox x:Name="ComboBoxCreate"
+                        ItemsSource="{Binding listeMissions}"
+                        DisplayMemberPath="LibelleCDivision" Margin="94,162,188,224" Grid.Column="2"
+                       />
+                    <Calendar x:Name="CalendrierCreate" Grid.Column="2" HorizontalAlignment="Left" Margin="223,157,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="CommentaireCreate" HorizontalAlignment="Left" Height="137" Margin="0,203,0,0" Text="Commentaire" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" Grid.Column="2"/>
+
 
                 </Grid>
 

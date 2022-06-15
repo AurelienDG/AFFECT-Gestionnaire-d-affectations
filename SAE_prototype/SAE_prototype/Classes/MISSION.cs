@@ -7,6 +7,24 @@ namespace SAE_prototype
 {
     public class MISSION : Crud<MISSION>
     {
+        public MISSION()
+        {
+
+        }
+        public MISSION(string libelleMission, int codeDivision, DateTime dateMission, string commentaire)
+        {
+            this.LibelleMission = libelleMission;
+            this.CodeDivision = codeDivision;
+            this.DateMission = dateMission;
+            this.Commentaire = commentaire;
+
+        }
+        public MISSION(string libelleMission, int codeDivision, DateTime dateMission)
+        {
+            this.LibelleMission = libelleMission;
+            this.CodeDivision = codeDivision;
+            this.DateMission = dateMission;
+        }
         public int CodeMission
         {
             get; set;

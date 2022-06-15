@@ -67,8 +67,6 @@ namespace SAE_prototype
         }
 
 
-
-
         private void Supprimer_Click(object sender, RoutedEventArgs e)
         {
             if (this.lvMission.SelectedItem != null)
@@ -78,27 +76,38 @@ namespace SAE_prototype
                     m.Delete();
                 }
             }
+            else
+            {
+                MessageBox.Show("Veuillez sélectionnez une mission à supprimer !", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
             Actualise();
         }
         private void Ajouter_Click(object sender, RoutedEventArgs e)
         {
             MISSION g = new MISSION();
+            if (this.TextBoxCreate.Text != null && this.CommentaireCreate.Text == null || this.CommentaireCreate.Text == "Commentaire")
+            {
+                g = new MISSION(this.TextBoxCreate.Text, ((DIVISION)this.ComboBoxCreate.SelectedItem).CodeDivision, this.CalendrierCreate.DisplayDate); 
+            }
+            if (this.TextBoxCreate.Text != null && this.CommentaireCreate.Text != null && this.CommentaireCreate.Text != "Commentaire")
+            {
+                g = new MISSION(this.TextBoxCreate.Text, ((DIVISION)this.ComboBoxCreate.SelectedItem).CodeDivision, this.CalendrierCreate.DisplayDate,this.CommentaireCreate.Text);
+            }
+            else
+            {
+                MessageBox.Show("Veuillez indiquer un libellé, un code de division et une date valide !", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
             g.Create();
             Actualise();
-            videText();
+            this.TextBoxCreate.Clear();
+            this.CalendrierCreate.SelectedDate = DateTime.Now;
+            this.CommentaireCreate.Text = "Commentaire";
+
         }
         private void NomTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            videText();
+            this.TextBoxCreate.Clear();
         }
-        public void videText()
-        {
-            this.NomTextBox.Text = "";
-
-        }
-
-        
-
         private void ModifierButton_Click(object sender, RoutedEventArgs e)
         {
 

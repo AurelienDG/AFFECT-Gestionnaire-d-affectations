@@ -34,16 +34,14 @@ namespace SAE_prototype
             //Professeur unProfesseur = new Professeur();
             CORPS_ARMEE unCORPS_ARMEE = new CORPS_ARMEE();
             listeCorpsArmee = unCORPS_ARMEE.FindAll();
+
             MISSION uneMISSION = new MISSION();
             listeMissions = uneMISSION.FindAll();
-            DIVISION uneDivision = new DIVISION();
-            listeDivisions = uneDivision.FindAll();
 
-            //EstNote unEstNote = new EstNote();
-            //listeEleves = unEleve.FindAll();
-            //listeProfesseurs = unProfesseur.FindAll();
+            DIVISION uneDIVISION = new DIVISION();
+            listeDivisions = uneDIVISION.FindAll();
 
-            //listeEstNotes = unEstNote.FindAll();
+            
             //mapping des relations en mode déconnecté
             //relation bi-directionnelle entre eleve et groupe
             //relation eleve -> note

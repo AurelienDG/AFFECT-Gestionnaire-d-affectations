@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "P:\\SAE 2.01\\SAE 2_01\\SAE_prototype\\SAE_prototype\\SAE_prototype.csproj": {}
+    "C:\\Users\\ladre\\OneDrive\\Bureau\\SAE 2_01\\SAE_prototype\\SAE_prototype\\SAE_prototype.csproj": {}
   },
   "projects": {
-    "P:\\SAE 2.01\\SAE 2_01\\SAE_prototype\\SAE_prototype\\SAE_prototype.csproj": {
+    "C:\\Users\\ladre\\OneDrive\\Bureau\\SAE 2_01\\SAE_prototype\\SAE_prototype\\SAE_prototype.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "P:\\SAE 2.01\\SAE 2_01\\SAE_prototype\\SAE_prototype\\SAE_prototype.csproj",
+        "projectUniqueName": "C:\\Users\\ladre\\OneDrive\\Bureau\\SAE 2_01\\SAE_prototype\\SAE_prototype\\SAE_prototype.csproj",
         "projectName": "SAE_prototype",
-        "projectPath": "P:\\SAE 2.01\\SAE 2_01\\SAE_prototype\\SAE_prototype\\SAE_prototype.csproj",
-        "packagesPath": "C:\\Users\\ladretti\\.nuget\\packages\\",
-        "outputPath": "P:\\SAE 2.01\\SAE 2_01\\SAE_prototype\\SAE_prototype\\obj\\",
+        "projectPath": "C:\\Users\\ladre\\OneDrive\\Bureau\\SAE 2_01\\SAE_prototype\\SAE_prototype\\SAE_prototype.csproj",
+        "packagesPath": "C:\\Users\\ladre\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ladre\\OneDrive\\Bureau\\SAE 2_01\\SAE_prototype\\SAE_prototype\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\ladretti\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\ladre\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -67,7 +63,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
         }
       }
     }
