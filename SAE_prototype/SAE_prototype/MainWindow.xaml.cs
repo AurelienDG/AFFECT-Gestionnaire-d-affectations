@@ -57,5 +57,61 @@ namespace SAE_prototype
             this.applicationData = new ApplicationData();
             this.DataContext = applicationData;
         }
+
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (this.lvMission.SelectedItem != null && this.lvMission.SelectedItems.Count == 1)
+            {
+                this.ChangeNom.Text = ((MISSION)this.lvMission.SelectedItem).LibelleMission;
+            }
+        }
+
+
+
+
+        private void Supprimer_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.lvMission.SelectedItem != null)
+            {
+                foreach (MISSION m in this.lvMission.SelectedItems)
+                {
+                    m.Delete();
+                }
+            }
+            Actualise();
+        }
+        private void Ajouter_Click(object sender, RoutedEventArgs e)
+        {
+            MISSION g = new MISSION();
+            g.Create();
+            Actualise();
+            videText();
+        }
+        private void NomTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            videText();
+        }
+        public void videText()
+        {
+            this.NomTextBox.Text = "";
+
+        }
+
+        
+
+        private void ModifierButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (this.lvMission.SelectedItem != null && this.lvMission.SelectedItems.Count == 1)
+            {
+                ((MISSION)this.lvMission.SelectedItem).LibelleMission = this.ChangeNom.Text;
+                ((MISSION)this.lvMission.SelectedItem).Update();
+            }
+            else
+            {
+                MessageBox.Show("Veuillez sélectionnez un seul corps d'armée à modifier", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            Actualise();
+        }
     }
 }

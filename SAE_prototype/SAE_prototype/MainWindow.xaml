@@ -61,7 +61,7 @@
                         x:Name="lvCorpsArmee"
                         Grid.Column="1"
                         Margin="70,49,70,56"
-                        ItemsSource="{Binding listeGroupes}">
+                        ItemsSource="{Binding listeCorpsArmee}">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Width="30" CellTemplate="{StaticResource caseACocher}" />
@@ -73,6 +73,99 @@
                         </ListView.View>
                     </ListView>
                 </Grid>
+            </TabItem>
+            <TabItem Header="Faire du pain">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="194*" />
+                        <ColumnDefinition Width="203*" />
+                    </Grid.ColumnDefinitions>
+                    <ListView
+                        x:Name="lvMission"
+                        Margin="48,42,48,42"
+                        ItemsSource="{Binding listeMissions}"
+                        SelectionChanged="ListView_SelectionChanged">
+                        <ListView.View>
+
+                            <GridView>
+                                <GridViewColumn Width="30" CellTemplate="{StaticResource caseACocher}" />
+                                <GridViewColumn
+                                    Width="100"
+                                    DisplayMemberBinding="{Binding LibelleMission}"
+                                    Header="Groupe" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <Label
+                        x:Name="Bullshit"
+                        Grid.Column="1"
+                        Width="267"
+                        Height="65"
+                        Margin="102,92,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Content="Label" />
+                    <Grid Grid.Row="1" DataContext="{Binding SelectedItem, ElementName=lvMission}" />
+                    <Button
+                        x:Name="Supprimer"
+                        Grid.Column="1"
+                        Width="170"
+                        Margin="156,142,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Click="Supprimer_Click"
+                        Content="Supprimer" />
+                    <TextBox
+                        x:Name="NomTextBox"
+                        Grid.Column="1"
+                        Width="75"
+                        Height="20"
+                        Margin="66,299,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        GotFocus="NomTextBox_GotFocus"
+                        Text="Libelle"
+                        TextWrapping="Wrap" />
+
+                    <Button
+                        x:Name="AjouterButton"
+                        Grid.Column="1"
+                        Width="48"
+                        Margin="194,363,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Click="Ajouter_Click"
+                        Content="Ajouter" />
+                    <TextBox
+                        x:Name="ChangeNom"
+                        Grid.Column="1"
+                        Width="124"
+                        Height="20"
+                        Margin="156,168,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Text="Modifier"
+                        TextWrapping="Wrap" />
+                    <Button
+                        x:Name="ModifierButton"
+                        Grid.Column="1"
+                        Width="49"
+                        Margin="331,163,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Click="ModifierButton_Click"
+                        Content="Modifier" />
+                    <ComboBox
+                        Grid.Column="1"
+                        Width="120"
+                        Margin="156,299,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        ItemsSource="{Binding listeDivisions}" />
+
+                </Grid>
+
+
             </TabItem>
         </TabControl>
     </Grid>

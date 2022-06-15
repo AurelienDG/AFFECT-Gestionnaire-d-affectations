@@ -11,7 +11,17 @@ namespace SAE_prototype
             this.loadApplicationData();
         }
 
-        public List<CORPS_ARMEE> listeGroupes
+        public List<CORPS_ARMEE> listeCorpsArmee
+        {
+            get;
+            set;
+        }
+        public List<MISSION> listeMissions
+        {
+            get;
+            set;
+        }
+        public List<DIVISION> listeDivisions
         {
             get;
             set;
@@ -23,10 +33,16 @@ namespace SAE_prototype
             //Eleve unEleve = new Eleve();
             //Professeur unProfesseur = new Professeur();
             CORPS_ARMEE unCORPS_ARMEE = new CORPS_ARMEE();
+            listeCorpsArmee = unCORPS_ARMEE.FindAll();
+            MISSION uneMISSION = new MISSION();
+            listeMissions = uneMISSION.FindAll();
+            DIVISION uneDivision = new DIVISION();
+            listeDivisions = uneDivision.FindAll();
+
             //EstNote unEstNote = new EstNote();
             //listeEleves = unEleve.FindAll();
             //listeProfesseurs = unProfesseur.FindAll();
-            listeGroupes = unCORPS_ARMEE.FindAll();
+
             //listeEstNotes = unEstNote.FindAll();
             //mapping des relations en mode déconnecté
             //relation bi-directionnelle entre eleve et groupe
