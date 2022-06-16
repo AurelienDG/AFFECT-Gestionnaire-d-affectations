@@ -26,6 +26,11 @@ namespace SAE_prototype
             get;
             set;
         }
+        public List<AFFECTATION> listeAffectations
+        {
+            get;
+            set;
+        }
 
         public void loadApplicationData()
         {
@@ -41,7 +46,9 @@ namespace SAE_prototype
             DIVISION uneDIVISION = new DIVISION();
             listeDivisions = uneDIVISION.FindAll();
 
-            
+            AFFECTATION uneAFFECTATION = new AFFECTATION();
+            listeAffectations = uneAFFECTATION.FindAll();
+
             //mapping des relations en mode déconnecté
             //relation bi-directionnelle entre eleve et groupe
             //relation eleve -> note

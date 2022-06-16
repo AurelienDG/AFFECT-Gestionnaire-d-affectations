@@ -5,15 +5,11 @@ using System.Text;
 
 namespace SAE_prototype
 {
-public class CORPS_ARMEE : Crud<CORPS_ARMEE>
+    public class CORPS_ARMEE : Crud<CORPS_ARMEE>
     {
         public CORPS_ARMEE()
         {
 
-        }
-        public CORPS_ARMEE(string libelleCorpsArmee)
-        {
-            this.LibelleCorpsArmee = libelleCorpsArmee;
         }
         public int CodeCorpsArmee
         {
@@ -33,29 +29,11 @@ public class CORPS_ARMEE : Crud<CORPS_ARMEE>
         }
         public void Update()
         {
-        throw new NotImplementedException();
+            throw new NotImplementedException();
         }
         public void Delete()
         {
-
-            DataAccess access = new DataAccess();
-            SqlDataReader reader;
-            try
-            {
-                if (access.openConnection())
-                {
-                    reader = access.getData("DELETE FROM CORPS_ARMEE WHERE LIBELLECORPSARMEE = '"+ this.LibelleCorpsArmee + "';");
-                    reader.Read();
-                    reader.Close();
-                    access.closeConnection();
-                }
-            }
-            catch (Exception ex)
-            {
-                System.Windows.MessageBox.Show(ex.Message, "Important Message");
-            }
-
-            
+            throw new NotImplementedException();
         }
         public List<CORPS_ARMEE> FindAll()
         {

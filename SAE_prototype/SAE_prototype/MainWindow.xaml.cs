@@ -60,20 +60,17 @@ namespace SAE_prototype
 
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (this.lvMission.SelectedItem != null && this.lvMission.SelectedItems.Count == 1)
-            {
-                this.ChangeNom.Text = ((MISSION)this.lvMission.SelectedItem).LibelleMission;
-            }
+
         }
 
 
-        private void Supprimer_Click(object sender, RoutedEventArgs e)
+        /*private void Supprimer_Click(object sender, RoutedEventArgs e)
         {
-            if (this.lvMission.SelectedItem != null)
+            if (this.lvAffectation.SelectedItem != null)
             {
-                foreach (MISSION m in this.lvMission.SelectedItems)
+                foreach (AFFECTATION a in this.lvAffectation.SelectedItems)
                 {
-                    m.Delete();
+                    a.Delete();
                 }
             }
             else
@@ -81,46 +78,35 @@ namespace SAE_prototype
                 MessageBox.Show("Veuillez sélectionnez une mission à supprimer !", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             Actualise();
-        }
-        private void Ajouter_Click(object sender, RoutedEventArgs e)
-        {
-            MISSION g = new MISSION();
-            if (this.TextBoxCreate.Text != null && this.CommentaireCreate.Text == null || this.CommentaireCreate.Text == "Commentaire")
-            {
-                g = new MISSION(this.TextBoxCreate.Text, ((DIVISION)this.ComboBoxCreate.SelectedItem).CodeDivision, this.CalendrierCreate.DisplayDate); 
-            }
-            if (this.TextBoxCreate.Text != null && this.CommentaireCreate.Text != null && this.CommentaireCreate.Text != "Commentaire")
-            {
-                g = new MISSION(this.TextBoxCreate.Text, ((DIVISION)this.ComboBoxCreate.SelectedItem).CodeDivision, this.CalendrierCreate.DisplayDate,this.CommentaireCreate.Text);
-            }
-            else
-            {
-                MessageBox.Show("Veuillez indiquer un libellé, un code de division et une date valide !", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            g.Create();
-            Actualise();
-            this.TextBoxCreate.Clear();
-            this.CalendrierCreate.SelectedDate = DateTime.Now;
-            this.CommentaireCreate.Text = "Commentaire";
-
-        }
-        private void NomTextBox_GotFocus(object sender, RoutedEventArgs e)
-        {
-            this.TextBoxCreate.Clear();
-        }
+        }*/
         private void ModifierButton_Click(object sender, RoutedEventArgs e)
         {
+            if (this.lvAffectations.SelectedItems.Count == 1)
+            {
+                ((AFFECTATION)this.lvAffectations.SelectedItem).Commentaire = this.textBoxDate.Text;
+                ((AFFECTATION)this.lvAffectations.SelectedItem).DateMission = this.CalendarAffectation.SelectedDate.Value;
+                ((AFFECTATION)this.lvAffectations.SelectedItem).Update();
 
-            if (this.lvMission.SelectedItem != null && this.lvMission.SelectedItems.Count == 1)
-            {
-                ((MISSION)this.lvMission.SelectedItem).LibelleMission = this.ChangeNom.Text;
-                ((MISSION)this.lvMission.SelectedItem).Update();
+                Actualise();
             }
-            else
+        }
+        private void lvAffectations_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (this.lvAffectations.SelectedItems.Count == 1)
             {
-                MessageBox.Show("Veuillez sélectionnez un seul corps d'armée à modifier", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                this.textBoxDate.Text = ((AFFECTATION)this.lvAffectations.SelectedItem).Commentaire;
+                this.CalendarAffectation.SelectedDate = ((AFFECTATION)this.lvAffectations.SelectedItem).DateMission;
+                this.sexe.Content = ((AFFECTATION)this.lvAffectations.SelectedItem).DateMission;
             }
-            Actualise();
+        }
+
+        private void BoutonSupprimer_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.lvAffectations.SelectedItems.Count == 1)
+            {
+                ((AFFECTATION)this.lvAffectations.SelectedItem).Delete();
+            }
+
         }
     }
 }
