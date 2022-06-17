@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="16.png" />
+    <None Remove="17.png" />
+    <None Remove="18.png" />
+    <None Remove="19.png" />
     <None Remove="bleueblancrouge.png" />
   </ItemGroup>
 
@@ -15,7 +19,26 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="16.png" />
+    <Resource Include="17.png" />
+    <Resource Include="18.png" />
+    <Resource Include="19.png" />
     <Resource Include="bleueblancrouge.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Logos\16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Logos\17.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Logos\18.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Logos\19.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

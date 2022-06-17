@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -30,27 +31,7 @@ namespace SAE_prototype
             Actualise();
         }
 
-        private void DeleteCA_Click_1(object sender, RoutedEventArgs e)
-        {
-            if ((CORPS_ARMEE)this.lvCorpsArmee.SelectedItem != null)
-            {
-                foreach (CORPS_ARMEE g in this.lvCorpsArmee.SelectedItems)
-                {
-                    g.Delete();
-                }
-                Actualise();
-            }
-            else
-            {
-                MessageBox.Show("Selectionner un corps d'armée", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            lvCorpsArmee.SelectAll();
-        }
+       
 
         public void Actualise()
         {
@@ -63,27 +44,11 @@ namespace SAE_prototype
 
         }
 
-
-        /*private void Supprimer_Click(object sender, RoutedEventArgs e)
-        {
-            if (this.lvAffectation.SelectedItem != null)
-            {
-                foreach (AFFECTATION a in this.lvAffectation.SelectedItems)
-                {
-                    a.Delete();
-                }
-            }
-            else
-            {
-                MessageBox.Show("Veuillez sélectionnez une mission à supprimer !", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            Actualise();
-        }*/
         private void ModifierButton_Click(object sender, RoutedEventArgs e)
         {
             if (this.lvAffectations.SelectedItems.Count == 1)
             {
-                ((AFFECTATION)this.lvAffectations.SelectedItem).Commentaire = this.textBoxDate.Text;
+                ((AFFECTATION)this.lvAffectations.SelectedItem).Commentaire = this.textBoxCommentaire.Text;
                 ((AFFECTATION)this.lvAffectations.SelectedItem).DateMission = this.CalendarAffectation.SelectedDate.Value;
                 ((AFFECTATION)this.lvAffectations.SelectedItem).Update();
 
@@ -94,9 +59,9 @@ namespace SAE_prototype
         {
             if (this.lvAffectations.SelectedItems.Count == 1)
             {
-                this.textBoxDate.Text = ((AFFECTATION)this.lvAffectations.SelectedItem).Commentaire;
+                this.textBoxCommentaire.Text = ((AFFECTATION)this.lvAffectations.SelectedItem).Commentaire;
                 this.CalendarAffectation.SelectedDate = ((AFFECTATION)this.lvAffectations.SelectedItem).DateMission;
-                this.sexe.Content = ((AFFECTATION)this.lvAffectations.SelectedItem).DateMission;
+                this.LabelDate.Content = ((AFFECTATION)this.lvAffectations.SelectedItem).DateMission;
             }
         }
 
@@ -106,7 +71,97 @@ namespace SAE_prototype
             {
                 ((AFFECTATION)this.lvAffectations.SelectedItem).Delete();
             }
+            Actualise();
+        }
 
+       
+
+        private void BoutonAjouterAffectation_Click(object sender, RoutedEventArgs e)
+        {
+            AFFECTATION a = new AFFECTATION();
+            if (this.ComboBoxDivision.SelectedItem == null || this.ComboBoxMission.SelectedItem == null || this.CalendarNouvelleAffectation.SelectedDate.Value == null)
+                MessageBox.Show("Veuillez sélectionner un code division, un code mission et une date", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+
+            else
+            {
+
+                if (this.textBoxNouveauCommentaire.Text == null || this.textBoxNouveauCommentaire.Text == "Commentaire")
+                    a = new AFFECTATION((DIVISION)this.ComboBoxDivision.SelectedItem ,(MISSION)this.ComboBoxMission.SelectedItem, this.CalendarNouvelleAffectation.SelectedDate.Value);
+                else
+                    a = new AFFECTATION((DIVISION)this.ComboBoxDivision.SelectedItem, (MISSION)this.ComboBoxMission.SelectedItem, this.CalendarNouvelleAffectation.SelectedDate.Value, this.textBoxNouveauCommentaire.Text);
+                a.Create();
+                Actualise();
+                MainTabControl.SelectedItem = this.TB3;
+            }
+
+            this.Image4.Visibility = Visibility.Hidden;
+        }
+
+        private void ComboBoxDivision_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (this.ComboBoxDivision.SelectedItem != null)
+            {
+                this.Prout.Content = ((DIVISION)this.ComboBoxDivision.SelectedItem).CodeDivision;
+
+                if (((DIVISION)this.ComboBoxDivision.SelectedItem).UncorpsArmee.CodeCorpsArmee == 16)
+                {
+                    this.Image1.Visibility = Visibility.Visible;
+                    this.Image2.Visibility = Visibility.Hidden;
+                    this.Image3.Visibility = Visibility.Hidden;
+                    this.Image4.Visibility = Visibility.Hidden;
+                }
+                else if (((DIVISION)this.ComboBoxDivision.SelectedItem).UncorpsArmee.CodeCorpsArmee == 17)
+                {
+                    this.Image1.Visibility = Visibility.Hidden;
+                    this.Image2.Visibility = Visibility.Visible;
+                    this.Image3.Visibility = Visibility.Hidden;
+                    this.Image4.Visibility = Visibility.Hidden;
+                }
+                else if (((DIVISION)this.ComboBoxDivision.SelectedItem).UncorpsArmee.CodeCorpsArmee == 18)
+                {
+                    this.Image1.Visibility = Visibility.Hidden;
+                    this.Image2.Visibility = Visibility.Hidden;
+                    this.Image3.Visibility = Visibility.Visible;
+                    this.Image4.Visibility = Visibility.Hidden;
+                }
+                else if (((DIVISION)this.ComboBoxDivision.SelectedItem).UncorpsArmee.CodeCorpsArmee == 19)
+                {
+                    this.Image1.Visibility = Visibility.Hidden;
+                    this.Image2.Visibility = Visibility.Hidden;
+                    this.Image3.Visibility = Visibility.Hidden;
+                    this.Image4.Visibility = Visibility.Visible;
+                }
+            }
+        }
+
+        private void BoutonTabModif_Click(object sender, RoutedEventArgs e)
+        {
+            MainTabControl.SelectedItem = this.TB2;
+        }
+
+        private void BoutonTabCréa_Click(object sender, RoutedEventArgs e)
+        {
+            MainTabControl.SelectedItem = this.TB3;
+        }
+
+        private void BoutonAccueil_Click(object sender, RoutedEventArgs e)
+        {
+            MainTabControl.SelectedItem = this.TB1;
+        }
+
+        private void BoutonAjouter_Click(object sender, RoutedEventArgs e)
+        {
+            MainTabControl.SelectedItem = this.TB3;
+        }
+
+        private void BoutonAccueil1_Click(object sender, RoutedEventArgs e)
+        {
+            MainTabControl.SelectedItem = this.TB1;
+        }
+
+        private void BoutonModif_Click(object sender, RoutedEventArgs e)
+        {
+            MainTabControl.SelectedItem = this.TB2;
         }
     }
 }

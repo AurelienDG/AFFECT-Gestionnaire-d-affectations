@@ -9,12 +9,13 @@ namespace SAE_prototype
     {
         public DIVISION()
         {
+            this.UncorpsArmee = new CORPS_ARMEE();
         }
         public int CodeDivision
         {
             get; set;
         }
-        public int CodeCorpsArmee
+        public CORPS_ARMEE UncorpsArmee
         {
             get; set;
         }
@@ -48,7 +49,7 @@ namespace SAE_prototype
                         {
                             DIVISION unGroupe = new DIVISION();
                             unGroupe.CodeDivision = reader.GetInt32(0);
-                            unGroupe.CodeCorpsArmee = reader.GetInt32(1);
+                            unGroupe.UncorpsArmee.CodeCorpsArmee = reader.GetInt32(1);
                             unGroupe.LibelleCDivision = reader.GetString(2);
                             listeGroupes.Add(unGroupe);
                         }

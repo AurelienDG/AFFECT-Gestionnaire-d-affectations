@@ -9,26 +9,28 @@ namespace SAE_prototype
     {
         public AFFECTATION()
         {
+            this.UneDivision = new DIVISION();
+            this.UneMission = new MISSION();
 
         }
-        public AFFECTATION(int codeMission, int codeDivision, DateTime DateMission)
+        public AFFECTATION(DIVISION UneDivision, MISSION UneMission, DateTime DateMission)
         {
-            this.CodeMission = codeMission;
-            this.CodeDivision = codeDivision;
+            this.UneMission = UneMission;
+            this.UneDivision = UneDivision;
             this.DateMission = DateMission;
         }
-        public AFFECTATION(int codeMission, int codeDivision, DateTime DateMission, string commentaire)
+        public AFFECTATION(DIVISION UneDivision, MISSION UneMission, DateTime DateMission, string commentaire)
         {
-            this.CodeMission = codeMission;
-            this.CodeDivision = codeDivision;
+            this.UneMission = UneMission;
+            this.UneDivision = UneDivision;
             this.DateMission = DateMission;
             this.Commentaire = commentaire;
         }
-        public int CodeMission
+        public MISSION UneMission
         {
             get; set;
         }
-        public int CodeDivision
+        public DIVISION UneDivision
         {
             get; set;
         }
@@ -53,9 +55,8 @@ namespace SAE_prototype
                 {
 
                     reader = access.getData("Update EST_AFFECTE " +
-                                            "set datemission = '" + this.DateMission + "'," +
-                                            "commentaire = '" + this.Commentaire + "'" +
-                                            "WHERE codeDivision = " + this.CodeDivision + "and codemission = " + this.CodeMission + ";");
+                                            "set commentaire = '" + this.Commentaire + "', datemission = '" + this.DateMission + "'" +
+                                            "WHERE codedivision = " + this.UneDivision.CodeDivision + "and codemission = " + this.UneMission.CodeMission + ";");
 
                     reader.Read();
                     reader.Close();
@@ -78,7 +79,7 @@ namespace SAE_prototype
                 {
                     reader = access.getData("Insert into EST_AFFECTE " +
                                             "(codedivision,codemission,datemission,commentaire) " +
-                                            "values (" + this.CodeDivision + "," + this.CodeMission + ",'" + this.DateMission + "','" + this.Commentaire + "');");
+                                            "values (" + this.UneDivision.CodeDivision + "," + this.UneMission.CodeMission + ",'" + this.DateMission + "','" + this.Commentaire + "');");
 
                     reader.Read();
                     reader.Close();
@@ -101,7 +102,7 @@ namespace SAE_prototype
                 if (access.openConnection())
                 {
                     reader = access.getData("Delete from EST_AFFECTE " +
-                                            "WHERE codeDivision = " + this.CodeDivision + "and codemission = " + this.CodeMission + ";");
+                                            "WHERE codedivision = " + this.UneDivision.CodeDivision + "and codemission = " + this.UneMission.CodeMission + ";");
 
                     reader.Read();
                     reader.Close();
@@ -123,17 +124,20 @@ namespace SAE_prototype
             {
                 if (access.openConnection())
                 {
-                    reader = access.getData("select * from EST_AFFECTE");
+                    reader = access.getData("select d.libelledivision, m.libellemission, e.DateMission, e.Commentaire, d.codedivision, m.codemission from EST_AFFECTE e Join mission m on m.codemission = e.codemission Join division d on d.codedivision = e.codedivision");
                     if (reader.HasRows)
                     {
                         while (reader.Read())
                         {
                             AFFECTATION uneAffectation = new AFFECTATION();
-                            uneAffectation.CodeDivision = reader.GetInt32(0);
-                            uneAffectation.CodeMission = reader.GetInt32(1);
+                            
+                            uneAffectation.UneDivision.LibelleCDivision = reader.GetString(0);
+                            uneAffectation.UneMission.LibelleMission = reader.GetString(1);
                             uneAffectation.DateMission = reader.GetDateTime(2);
                             if (reader.GetString(3) != null)
                                 uneAffectation.Commentaire = reader.GetString(3);
+                            uneAffectation.UneDivision.CodeDivision = reader.GetInt32(4);
+                            uneAffectation.UneMission.CodeMission = reader.GetInt32(5);
 
                             listeAffectations.Add(uneAffectation);
                         }
