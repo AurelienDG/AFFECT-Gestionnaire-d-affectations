@@ -11,22 +11,22 @@ namespace SAE_prototype
             this.loadApplicationData();
         }
 
-        public List<CORPS_ARMEE> listeCorpsArmee
+        public List<Corps_Armee> listeCorpsArmee
         {
             get;
             set;
         }
-        public List<MISSION> listeMissions
+        public List<Mission> listeMissions
         {
             get;
             set;
         }
-        public List<DIVISION> listeDivisions
+        public List<Division> listeDivisions
         {
             get;
             set;
         }
-        public List<AFFECTATION> listeAffectations
+        public List<Affectation> listeAffectations
         {
             get;
             set;
@@ -37,16 +37,16 @@ namespace SAE_prototype
             //chargement des tables
             //Eleve unEleve = new Eleve();
             //Professeur unProfesseur = new Professeur();
-            CORPS_ARMEE unCORPS_ARMEE = new CORPS_ARMEE();
+            Corps_Armee unCORPS_ARMEE = new Corps_Armee();
             listeCorpsArmee = unCORPS_ARMEE.FindAll();
 
-            MISSION uneMISSION = new MISSION();
+            Mission uneMISSION = new Mission();
             listeMissions = uneMISSION.FindAll();
 
-            DIVISION uneDIVISION = new DIVISION();
+            Division uneDIVISION = new Division();
             listeDivisions = uneDIVISION.FindAll();
 
-            AFFECTATION uneAFFECTATION = new AFFECTATION();
+            Affectation uneAFFECTATION = new Affectation();
             listeAffectations = uneAFFECTATION.FindAll();
 
             //mapping des relations en mode déconnecté

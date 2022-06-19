@@ -1,16 +1,26 @@
-﻿<Window
+﻿<Window x:Name="window"
     x:Class="SAE_prototype.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:SAE_prototype"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="MainWindow"
+    Title="Affectations"
+    Icon="/logo.png"
     Width="800"
-    Height="450"
+    Height="500"
     MinWidth="800"
     MinHeight="450"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    WindowStyle="None"
+    Background="Transparent"
+    WindowStartupLocation="CenterScreen">
+    <WindowChrome.WindowChrome>
+        <WindowChrome 
+        CaptionHeight="0"
+        ResizeBorderThickness="5" />
+    </WindowChrome.WindowChrome>
+
     <Window.Resources>
         <!--  template pour inserer une case a cocher dans un listview : la case est cochee sur la selection d'un item  -->
         <DataTemplate x:Key="caseACocher">
@@ -23,62 +33,68 @@
         <local:ApplicationData />
     </Window.DataContext>
     <Grid Background="#FFCDCDCD">
-        <TabControl Name="MainTabControl">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="201*"/>
+            <ColumnDefinition Width="229*"/>
+            <ColumnDefinition Width="370*"/>
+        </Grid.ColumnDefinitions>
+        <TabControl Name="MainTabControl" Grid.ColumnSpan="3" Margin="0,27,0,0">
 
             <TabItem x:Name="TB1" Header="Accueil">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="115*" />
-                        <ColumnDefinition Width="282*" />
+                        <ColumnDefinition />
                     </Grid.ColumnDefinitions>
                     <Image
-                        Grid.Column="1"
-                        Margin="90,164,0,0"
+                        Margin="320,164,0,0"
                         Source="/bleueblancrouge.png"
                         Stretch="Fill" />
-                    <Label
-                        Grid.Column="1"
-                        Width="226"
-                        Height="76"
-                        Margin="54,90,0,0"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Top"
-                        Content="ACCUEIL"
-                        FontFamily="Britannic Bold"
-                        FontSize="48" />
                     <Button
                         x:Name="BoutonTabModif"
-                        Grid.ColumnSpan="2"
-                        Width="152"
-                        Height="62"
-                        Margin="181,189,0,0"
-                        HorizontalAlignment="Left"
+                        Width="194"
+                        Height="48"
+                        Margin="0,189,0,0"
+                        HorizontalAlignment="Center"
                         VerticalAlignment="Top"
                         Click="BoutonTabModif_Click"
-                        Content="Consulter et Modifer" />
+                        Content="Consulter et Modifer" Background="{x:Null}" />
                     <Button
                         x:Name="BoutonTabCréa"
-                        Grid.Column="1"
-                        Width="152"
-                        Height="62"
-                        Margin="218,189,0,0"
-                        HorizontalAlignment="Left"
+                        Width="194"
+                        Height="43"
+                        Margin="0,242,0,0"
+                        HorizontalAlignment="Center"
                         VerticalAlignment="Top"
                         Click="BoutonTabCréa_Click"
                         Content="Créer une affectation" />
+                    <Button
+                        x:Name="BoutonApropos"
+                        Width="194"
+                        Height="30"
+                        Margin="0,290,0,0"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Top"
+                        Content="À propos" Click="BoutonApropos_Click" />
+                    <Image Source="/logo.png" Margin="0,-5,0,0" Height="206" VerticalAlignment="Top" HorizontalAlignment="Center" Width="194"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="TB2" Header="Consulter les affectations">
                 <Grid Background="#FFE5E5E5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="294*"/>
+                        <RowDefinition Height="151*"/>
+                    </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="194*" />
-                        <ColumnDefinition Width="203*" />
+                        <ColumnDefinition Width="213*" />
+                        <ColumnDefinition Width="56*" />
+                        <ColumnDefinition Width="128*"/>
                     </Grid.ColumnDefinitions>
                     <ListView
                         x:Name="lvAffectations"
-                        Margin="61,53,61,52"
+                        Margin="10,57,10,127"
                         ItemsSource="{Binding listeAffectations}"
-                        SelectionChanged="lvAffectations_SelectionChanged">
+                        SelectionChanged="LvAffectations_SelectionChanged"
+                        SelectionMode="Single" Grid.RowSpan="2">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Width="30" CellTemplate="{StaticResource caseACocher}" />
@@ -90,179 +106,222 @@
                                     Width="100"
                                     DisplayMemberBinding="{Binding UneMission.LibelleMission}"
                                     Header="Libelle Mission" />
+                                <GridViewColumn
+                                    Width="150"
+                                    DisplayMemberBinding="{Binding DateMission.Date}"
+                                    Header="Date Mission" />
                             </GridView>
                         </ListView.View>
                     </ListView>
-                    <Grid Grid.ColumnSpan="2" DataContext="{Binding SelectedItem, ElementName=lvAffectations}">
+                    <Grid Grid.ColumnSpan="3" DataContext="{Binding SelectedItem, ElementName=lvAffectations}" Grid.RowSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="108*"/>
+                            <ColumnDefinition Width="106*"/>
+                            <ColumnDefinition Width="183*"/>
+                        </Grid.ColumnDefinitions>
                         <TextBox
                             x:Name="textBoxCommentaire"
-                            Width="184"
-                            Height="32"
-                            Margin="440,113,0,0"
-                            HorizontalAlignment="Left"
+                            Height="58"
+                            Margin="15,140,77,0"
                             VerticalAlignment="Top"
                             Text=""
-                            TextWrapping="Wrap" />
+                            TextWrapping="Wrap" Grid.Column="2" />
                         <Button
                             x:Name="ModifierButton"
-                            Width="187"
-                            Margin="437,150,0,0"
-                            HorizontalAlignment="Left"
+                            Margin="12,203,77,0"
                             VerticalAlignment="Top"
                             Click="ModifierButton_Click"
-                            Content="Modifier" />
+                            Content="Modifier" Grid.Column="2" Height="46" />
                         <DatePicker
                             x:Name="CalendarAffectation"
-                            Width="184"
-                            Height="24"
-                            Margin="440,84,0,0"
-                            HorizontalAlignment="Left"
+                            Height="23"
+                            Margin="12,94,145,0"
                             VerticalAlignment="Top"
-                            Visibility="Visible" />
-                        <Label
-                            x:Name="LabelDate"
-                            Margin="625,84,0,0"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
-                            Content="Label" />
+                            Visibility="Visible" Grid.Column="2" />
                         <Button
                             x:Name="BoutonSupprimer"
-                            Width="184"
-                            Margin="440,59,0,0"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
+                            Margin="12,0,77,139"
                             Click="BoutonSupprimer_Click"
-                            Content="Supprimer" />
+                            Content="Supprimer" Grid.Column="2" Height="52" VerticalAlignment="Bottom" />
                         <Button
                             x:Name="BoutonAccueil"
-                            Width="152"
-                            Height="62"
-                            Margin="421,249,0,0"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
+                            Margin="133,0,10,21"
                             Click="BoutonAccueil_Click"
-                            Content="Accueil" />
+                            Content="Accueil" Grid.Column="2" Height="52" VerticalAlignment="Bottom" />
                         <Button
                             x:Name="BoutonAjouter"
-                            Width="152"
-                            Height="62"
-                            Margin="586,249,0,0"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
+                            Margin="10,372,159,0"
                             Click="BoutonAjouter_Click"
-                            Content="Ajouter" />
+                            Content="Ajouter" Height="52" VerticalAlignment="Top" Grid.ColumnSpan="2" />
 
                     </Grid>
+                    <Label x:Name="LabelCommentaire" Content="Commentaire:" Grid.Column="1" Height="25" Margin="10,115,10,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                    <Label x:Name="LabelExplication" Content="Pour modifier une affectation veuillez la selectionner dans la liste&#xD;&#xA;à gauche." Grid.Column="1" Height="42" Margin="10,51,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="244"/>
+                    <Image x:Name="modificationImage" Height="82" Margin="2,-11,0,0" VerticalAlignment="Top" Source="/modification.png" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Left" Width="260"/>
+                    <Image Margin="-3,-11,169,0" Source="/liste_affectations.png" Height="78" VerticalAlignment="Top"/>
+                    <Button Content="Rechercher" Margin="275,0,239,21" Click="Button_Click_1" Height="52" VerticalAlignment="Bottom" Grid.Row="1" Grid.ColumnSpan="3"/>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="TB3" Header="slurp">
+            <TabItem x:Name="TB3" Header="Ajouter">
 
                 <Grid Background="#FFE5E5E5">
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="194*" />
-                        <ColumnDefinition Width="203*" />
+                        <ColumnDefinition Width="67*" />
+                        <ColumnDefinition Width="321*"/>
+                        <ColumnDefinition Width="406*" />
                     </Grid.ColumnDefinitions>
+                    <Image Margin="11,-12,0,0" Source="/ajout_affectation.png" Height="126" VerticalAlignment="Top" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="360"/>
+
+                    <Image x:Name="Image1" Margin="125,222,0,0" Source="/16.png" Height="126" VerticalAlignment="Top" HorizontalAlignment="Left" Width="168" Grid.Column="2" Visibility="Hidden"/>
+                    <Image x:Name="Image2" Margin="125,222,0,0" Source="/17.png" Height="126" VerticalAlignment="Top" HorizontalAlignment="Left" Width="168" Grid.Column="2" Visibility="Hidden"/>
+                    <Image x:Name="Image3" Margin="125,222,0,0" Source="/18.png" Height="126" VerticalAlignment="Top" HorizontalAlignment="Left" Width="168" Grid.Column="2" Visibility="Hidden"/>
+                    <Image x:Name="Image4" Margin="125,222,0,0" Source="/19.png" Height="126" VerticalAlignment="Top" HorizontalAlignment="Left" Width="168" Grid.Column="2" Visibility="Hidden"/>
+
+                    <Image Margin="12,103,0,0" Source="/missions.png" Height="109" VerticalAlignment="Top" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="312"/>
+                    <Image Margin="12,41,0,0" Source="/divisions_texte.png" Height="109" VerticalAlignment="Top" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="312"/>
+                    <Image Margin="12,167,0,0" Source="/date_texte.png" Height="100" VerticalAlignment="Top" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="312"/>
                     <ComboBox
                         x:Name="ComboBoxDivision"
-                        Width="120"
-                        Margin="185,115,0,0"
-                        HorizontalAlignment="Left"
+                        Margin="26,107,111,0"
                         VerticalAlignment="Top"
                         DisplayMemberPath="LibelleCDivision"
                         ItemsSource="{Binding listeDivisions}"
-                        SelectionChanged="ComboBoxDivision_SelectionChanged" />
+                        SelectionChanged="ComboBoxDivision_SelectionChanged" Grid.ColumnSpan="2" />
                     <ComboBox
                         x:Name="ComboBoxMission"
-                        Grid.Column="1"
-                        Width="120"
-                        Margin="83,115,0,0"
-                        HorizontalAlignment="Left"
+                        Margin="26,170,34,0"
                         VerticalAlignment="Top"
                         DisplayMemberPath="LibelleMission"
-                        ItemsSource="{Binding listeMissions}" />
+                        ItemsSource="{Binding listeMissions}" Grid.ColumnSpan="2" />
                     <DatePicker
                         x:Name="CalendarNouvelleAffectation"
-                        Grid.ColumnSpan="2"
-                        Margin="322,179,0,0"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Top" />
+                        Margin="26,229,34,0"
+                        VerticalAlignment="Top" Grid.ColumnSpan="2" />
                     <TextBox
                         x:Name="textBoxNouveauCommentaire"
-                        Grid.ColumnSpan="2"
-                        Width="397"
-                        Height="60"
-                        Margin="194,236,0,0"
-                        HorizontalAlignment="Left"
+                        Height="47"
+                        Margin="26,257,34,0"
                         VerticalAlignment="Top"
                         Text="Commentaire"
-                        TextWrapping="Wrap" />
+                        TextWrapping="Wrap" Grid.ColumnSpan="2" GotFocus="textBoxNouveauCommentaire_GotFocus" LostFocus="textBoxNouveauCommentaire_LostFocus" />
                     <Button
                         x:Name="BoutonAjouterAffectation"
-                        Grid.ColumnSpan="2"
-                        Width="177"
                         Height="36"
-                        Margin="304,331,0,0"
-                        HorizontalAlignment="Left"
+                        Margin="26,309,34,0"
                         VerticalAlignment="Top"
                         Click="BoutonAjouterAffectation_Click"
-                        Content="Ajouter" />
-                    <Image
-                        x:Name="Image1"
-                        Margin="26,18,227,247"
-                        Source="/16.png"
-                        Visibility="Hidden" />
-                    <Image
-                        x:Name="Image2"
-                        Margin="26,18,227,247"
-                        Source="/17.png"
-                        Visibility="Hidden" />
-                    <Image
-                        x:Name="Image3"
-                        Margin="26,18,227,247"
-                        Source="/18.png"
-                        Visibility="Hidden" />
-                    <Image
-                        x:Name="Image4"
-                        Margin="26,18,227,247"
-                        Source="/19.png"
-                        Visibility="Hidden" />
+                        Content="Ajouter" Grid.ColumnSpan="2" />
+
                     <Label
-                        x:Name="Prout"
-                        Margin="106,191,0,0"
-                        HorizontalAlignment="Left"
+                        x:Name="IdImage"
+                        Margin="0,191,0,0"
+                        HorizontalAlignment="Center"
                         VerticalAlignment="Top"
-                        Content="Label" />
+                        Content="" 
+                        IsEnabled="False" Grid.Column="2"/>
                     <Button
                         x:Name="BoutonModif"
-                        Grid.Column="1"
-                        Width="152"
-                        Height="62"
-                        Margin="244,334,0,0"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Top"
+                        Margin="26,0,34,10"
                         Click="BoutonModif_Click"
-                        Content="Button" />
+                        Content="Modifier" Height="75" VerticalAlignment="Bottom" Grid.ColumnSpan="2" />
                     <Button
                         x:Name="BoutonAccueil1"
-                        Grid.Column="1"
-                        Width="152"
-                        Height="62"
-                        Margin="244,267,0,0"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Top"
+                        Grid.Column="2"
+                        Margin="10,0,10,10"
                         Click="BoutonAccueil1_Click"
-                        Content="Button" />
+                        Content="Acceuil" Height="75" VerticalAlignment="Bottom" />
+                    <DataGrid 
+                        Grid.Column="2" 
+                        Margin="9,19,10,241" 
+                        ItemsSource="{Binding listeAffectations}" 
+                        AutoGenerateColumns="False"
+                        Foreground="Black"
+                        IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding UneDivision.LibelleCDivision}" MinWidth="100" Header="Division"/>
+                            <DataGridTextColumn Binding="{Binding UneMission.LibelleMission}" MinWidth="100" Header="Mission"/>
+                            <DataGridTextColumn Binding="{Binding Commentaire}" MinWidth="154" Header="Commentaire"/>
+
+                        </DataGrid.Columns>
+                    </DataGrid>
 
 
 
 
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="TB4" Header="Recherche" HorizontalAlignment="Center" Height="20" VerticalAlignment="Center">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="415*"/>
+                        <ColumnDefinition Width="379*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <ListView x:Name="listeDivisions" Grid.Column="1" Height="122" Margin="10,72,10,0" VerticalAlignment="Top" ItemsSource="{Binding listeDivisions}" SelectionChanged="ListView_SelectionChanged_1">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Width="30" CellTemplate="{StaticResource caseACocher}" />
+                                <GridViewColumn DisplayMemberBinding="{Binding LibelleCDivision}" Header="Division"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <ListView x:Name="listeMiss" Grid.Column="1" Height="122" Margin="10,280,10,0" VerticalAlignment="Top" ItemsSource="{Binding listeMissions}" SelectionChanged="ListView_SelectionChanged_1">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Width="30" CellTemplate="{StaticResource caseACocher}" />
+                                <GridViewColumn Width="150" DisplayMemberBinding="{Binding LibelleMission}" Header="Mission"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <ListView x:Name="lvAffectRecherche" Margin="10,56,10,10">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn x:Name="lvDiv"
+                                    Width="100"
+                                    Header="Libelle Division" 
+                                    DisplayMemberBinding="{Binding UneDivision.LibelleCDivision}"/>
+                                <GridViewColumn x:Name="lvMis"
+                                    Width="100"
+                                    Header="Libelle Mission" 
+                                    DisplayMemberBinding="{Binding UneMission.LibelleMission}"/>
+                                <GridViewColumn x:Name="lvDate"
+                                    Width="150"
+                                    Header="Date Mission" 
+                                    DisplayMemberBinding="{Binding DateMission.Date}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <Button x:Name="selectAll" Content="Tout sélectionner" Grid.Column="1" HorizontalAlignment="Left" Height="28" Margin="27,199,0,0" VerticalAlignment="Top" Width="147" Click="selectAll_Click"/>
+                    <Button x:Name="unSelectAll" Content="Tout désélectionner" Grid.Column="1" HorizontalAlignment="Left" Height="28" Margin="207,199,0,0" VerticalAlignment="Top" Width="148" Click="unSelectAll_Click"/>
+                    <Button x:Name="selectAllM" Content="Tout sélectionner" Grid.Column="1" HorizontalAlignment="Left" Height="28" Margin="27,407,0,0" VerticalAlignment="Top" Width="147" Click="selectAllM_Click"/>
+                    <Button x:Name="unSelectAllM" Content="Tout désélectionner" Grid.Column="1" HorizontalAlignment="Left" Height="28" Margin="207,407,0,0" VerticalAlignment="Top" Width="148" Click="unSelectAllM_Click"/>
+                    <Image Grid.Column="1" Margin="10,0,0,0" Stretch="Fill" Source="/recherche_texte.png" Height="41" VerticalAlignment="Top" HorizontalAlignment="Left" Width="345"/>
+                    <Image Grid.Column="1" Margin="10,41,0,0" Stretch="Fill" Source="/recherche_div_texte.png" HorizontalAlignment="Left" Width="280" Height="31" VerticalAlignment="Top"/>
+                    <Image Grid.Column="1" Margin="10,243,89,0" Stretch="Fill" Source="/recherche_miss_texte.png" Height="32" VerticalAlignment="Top"/>
+                    <Button Content="Retour" Height="41" Margin="10,10,18,0" VerticalAlignment="Top" Click="Button_Click_2"/>
 
                 </Grid>
             </TabItem>
 
         </TabControl>
-
+        <Rectangle Grid.ColumnSpan="3" Height="49" Stroke="Black" VerticalAlignment="Top" Fill="#FF080088"/>
+        <Button x:Name="boutonFermer" Grid.Column="2" Height="26" Margin="0,13,6,0" VerticalAlignment="Top" BorderBrush="{x:Null}" Click="Button_Click" HorizontalAlignment="Right" Width="31">
+            <Button.Background>
+                <ImageBrush ImageSource="/fermer.png" Stretch="Fill"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="boutonMinimize" Grid.Column="2" Height="26" Margin="0,13,78,0" VerticalAlignment="Top" BorderBrush="{x:Null}" Click="Minimize_Click" HorizontalAlignment="Right" Width="31">
+            <Button.Background>
+                <ImageBrush ImageSource="/minimize.png" Stretch="Fill"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="boutonMaximise" Grid.Column="2" Height="26" Margin="0,13,44,0" VerticalAlignment="Top" BorderBrush="{x:Null}" Click="Maximise_Click" HorizontalAlignment="Right" Width="31">
+            <Button.Background>
+                <ImageBrush ImageSource="/fullscreen.png" Stretch="Fill"/>
+            </Button.Background>
+        </Button>
+        <Label x:Name="LabelDate" Content="" Grid.Column="2" HorizontalAlignment="Left" Height="31" Margin="273,143,0,0" VerticalAlignment="Top" Width="75" Visibility="Hidden"/>
 
     </Grid>
 </Window>

@@ -5,17 +5,17 @@ using System.Text;
 
 namespace SAE_prototype
 {
-    public class DIVISION : Crud<DIVISION>
+    public class Division : Crud<Division>
     {
-        public DIVISION()
+        public Division()
         {
-            this.UncorpsArmee = new CORPS_ARMEE();
+            this.UncorpsArmee = new Corps_Armee();
         }
         public int CodeDivision
         {
             get; set;
         }
-        public CORPS_ARMEE UncorpsArmee
+        public Corps_Armee UncorpsArmee
         {
             get; set;
         }
@@ -33,21 +33,21 @@ namespace SAE_prototype
             throw new NotImplementedException();
         }
 
-        public List<DIVISION> FindAll()
+        public List<Division> FindAll()
         {
-            List<DIVISION> listeGroupes = new List<DIVISION>();
+            List<Division> listeGroupes = new List<Division>();
             DataAccess access = new DataAccess();
             SqlDataReader reader;
             try
             {
                 if (access.openConnection())
                 {
-                    reader = access.getData("select * from DIVISION;");
+                    reader = access.getData("select * from Division;");
                     if (reader.HasRows)
                     {
                         while (reader.Read())
                         {
-                            DIVISION unGroupe = new DIVISION();
+                            Division unGroupe = new Division();
                             unGroupe.CodeDivision = reader.GetInt32(0);
                             unGroupe.UncorpsArmee.CodeCorpsArmee = reader.GetInt32(1);
                             unGroupe.LibelleCDivision = reader.GetString(2);
@@ -70,7 +70,7 @@ namespace SAE_prototype
             
         }
 
-        public List<DIVISION> FindBySelection(string criteres)
+        public List<Division> FindBySelection(string criteres)
         {
             throw new NotImplementedException();
         }

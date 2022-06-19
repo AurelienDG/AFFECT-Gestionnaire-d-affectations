@@ -22,16 +22,16 @@ namespace SAE_prototype
     /// </summary>
     public partial class MainWindow : Window
     {
-        public ObservableCollection<CORPS_ARMEE> LesCorpsArmee { get; set; }
+
         private ApplicationData applicationData;
         public MainWindow()
         {
-            LesCorpsArmee = new ObservableCollection<CORPS_ARMEE>();
+
             InitializeComponent();
             Actualise();
         }
 
-       
+
 
         public void Actualise()
         {
@@ -48,48 +48,79 @@ namespace SAE_prototype
         {
             if (this.lvAffectations.SelectedItems.Count == 1)
             {
-                ((AFFECTATION)this.lvAffectations.SelectedItem).Commentaire = this.textBoxCommentaire.Text;
-                ((AFFECTATION)this.lvAffectations.SelectedItem).DateMission = this.CalendarAffectation.SelectedDate.Value;
-                ((AFFECTATION)this.lvAffectations.SelectedItem).Update();
+                MessageBoxResult dialogResult = MessageBox.Show($"Valider la modification", "Modifier", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (dialogResult == MessageBoxResult.Yes)
+                {
+                    ((Affectation)this.lvAffectations.SelectedItem).Commentaire = RetireCharCommentaire(this.textBoxCommentaire.Text);
+                    ((Affectation)this.lvAffectations.SelectedItem).DateMission = this.CalendarAffectation.SelectedDate.Value;
+                    ((Affectation)this.lvAffectations.SelectedItem).Update();
 
-                Actualise();
+                    Actualise();
+                }
+            }
+            else
+            {
+                MessageBox.Show($"Selectionner une affectation pour modifier", "Modifier", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-        private void lvAffectations_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        public string RetireCharCommentaire(string commentaire)
+        {
+            string[] charsToRemove = new string[] { "@", ",", ".", ";", "'" };
+            foreach (var c in charsToRemove)
+            {
+                commentaire = commentaire.Replace(c, " ");
+            }
+            return commentaire;
+        }
+        private void LvAffectations_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (this.lvAffectations.SelectedItems.Count == 1)
             {
-                this.textBoxCommentaire.Text = ((AFFECTATION)this.lvAffectations.SelectedItem).Commentaire;
-                this.CalendarAffectation.SelectedDate = ((AFFECTATION)this.lvAffectations.SelectedItem).DateMission;
-                this.LabelDate.Content = ((AFFECTATION)this.lvAffectations.SelectedItem).DateMission;
+                this.textBoxCommentaire.Text = ((Affectation)this.lvAffectations.SelectedItem).Commentaire;
+                this.CalendarAffectation.SelectedDate = ((Affectation)this.lvAffectations.SelectedItem).DateMission;
+                this.LabelDate.Content = ((Affectation)this.lvAffectations.SelectedItem).DateMission;
+            }
+
+            if (this.lvAffectations.SelectedItems.Count > 1)
+            {
+                MessageBox.Show("Veuillez sélectionner une seule affectation", "Attention", MessageBoxButton.OK, MessageBoxImage.Warning);
+                this.lvAffectations.SelectedItems.Clear();
             }
         }
 
         private void BoutonSupprimer_Click(object sender, RoutedEventArgs e)
         {
-            if (this.lvAffectations.SelectedItems.Count == 1)
+
+            MessageBoxResult dialogResult = MessageBox.Show($"Voulez vous vraiment supprimer l'affectation de la division {((Affectation)this.lvAffectations.SelectedItem).UneDivision.LibelleCDivision} à la mission {((Affectation)this.lvAffectations.SelectedItem).UneMission.LibelleMission}", "Supprimer", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
+            if (dialogResult == MessageBoxResult.Yes)
             {
-                ((AFFECTATION)this.lvAffectations.SelectedItem).Delete();
+                if (this.lvAffectations.SelectedItems.Count == 1)
+                {
+                    ((Affectation)this.lvAffectations.SelectedItem).Delete();
+                }
             }
             Actualise();
         }
 
-       
+
 
         private void BoutonAjouterAffectation_Click(object sender, RoutedEventArgs e)
         {
-            AFFECTATION a = new AFFECTATION();
+            Affectation a = new Affectation();
             if (this.ComboBoxDivision.SelectedItem == null || this.ComboBoxMission.SelectedItem == null || this.CalendarNouvelleAffectation.SelectedDate.Value == null)
                 MessageBox.Show("Veuillez sélectionner un code division, un code mission et une date", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
 
             else
             {
-
-                if (this.textBoxNouveauCommentaire.Text == null || this.textBoxNouveauCommentaire.Text == "Commentaire")
-                    a = new AFFECTATION((DIVISION)this.ComboBoxDivision.SelectedItem ,(MISSION)this.ComboBoxMission.SelectedItem, this.CalendarNouvelleAffectation.SelectedDate.Value);
-                else
-                    a = new AFFECTATION((DIVISION)this.ComboBoxDivision.SelectedItem, (MISSION)this.ComboBoxMission.SelectedItem, this.CalendarNouvelleAffectation.SelectedDate.Value, this.textBoxNouveauCommentaire.Text);
-                a.Create();
+                MessageBoxResult verification = MessageBox.Show($"Voulez vous vraiment ajouter l'affectation de la division {((Division)(this.ComboBoxDivision.SelectedItem)).LibelleCDivision} à la mission {((Mission)this.ComboBoxMission.SelectedItem).LibelleMission}", "Ajouter", MessageBoxButton.YesNo, MessageBoxImage.Information);
+                if (verification == MessageBoxResult.Yes)
+                {
+                    if (this.textBoxNouveauCommentaire.Text == null || this.textBoxNouveauCommentaire.Text == "Commentaire")
+                        a = new Affectation((Division)this.ComboBoxDivision.SelectedItem, (Mission)this.ComboBoxMission.SelectedItem, this.CalendarNouvelleAffectation.SelectedDate.Value);
+                    else
+                        a = new Affectation((Division)this.ComboBoxDivision.SelectedItem, (Mission)this.ComboBoxMission.SelectedItem, this.CalendarNouvelleAffectation.SelectedDate.Value, RetireCharCommentaire(this.textBoxNouveauCommentaire.Text));
+                    a.Create();
+                }
                 Actualise();
                 MainTabControl.SelectedItem = this.TB3;
             }
@@ -101,30 +132,30 @@ namespace SAE_prototype
         {
             if (this.ComboBoxDivision.SelectedItem != null)
             {
-                this.Prout.Content = ((DIVISION)this.ComboBoxDivision.SelectedItem).CodeDivision;
+                this.IdImage.Content = ((Division)this.ComboBoxDivision.SelectedItem).CodeDivision;
 
-                if (((DIVISION)this.ComboBoxDivision.SelectedItem).UncorpsArmee.CodeCorpsArmee == 16)
+                if (((Division)this.ComboBoxDivision.SelectedItem).UncorpsArmee.CodeCorpsArmee == 16)
                 {
                     this.Image1.Visibility = Visibility.Visible;
                     this.Image2.Visibility = Visibility.Hidden;
                     this.Image3.Visibility = Visibility.Hidden;
                     this.Image4.Visibility = Visibility.Hidden;
                 }
-                else if (((DIVISION)this.ComboBoxDivision.SelectedItem).UncorpsArmee.CodeCorpsArmee == 17)
+                else if (((Division)this.ComboBoxDivision.SelectedItem).UncorpsArmee.CodeCorpsArmee == 17)
                 {
                     this.Image1.Visibility = Visibility.Hidden;
                     this.Image2.Visibility = Visibility.Visible;
                     this.Image3.Visibility = Visibility.Hidden;
                     this.Image4.Visibility = Visibility.Hidden;
                 }
-                else if (((DIVISION)this.ComboBoxDivision.SelectedItem).UncorpsArmee.CodeCorpsArmee == 18)
+                else if (((Division)this.ComboBoxDivision.SelectedItem).UncorpsArmee.CodeCorpsArmee == 18)
                 {
                     this.Image1.Visibility = Visibility.Hidden;
                     this.Image2.Visibility = Visibility.Hidden;
                     this.Image3.Visibility = Visibility.Visible;
                     this.Image4.Visibility = Visibility.Hidden;
                 }
-                else if (((DIVISION)this.ComboBoxDivision.SelectedItem).UncorpsArmee.CodeCorpsArmee == 19)
+                else if (((Division)this.ComboBoxDivision.SelectedItem).UncorpsArmee.CodeCorpsArmee == 19)
                 {
                     this.Image1.Visibility = Visibility.Hidden;
                     this.Image2.Visibility = Visibility.Hidden;
@@ -162,6 +193,103 @@ namespace SAE_prototype
         private void BoutonModif_Click(object sender, RoutedEventArgs e)
         {
             MainTabControl.SelectedItem = this.TB2;
+        }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            base.Close();
+        }
+
+        private void Minimize_Click(object sender, RoutedEventArgs e)
+        {
+            window.WindowState = WindowState.Minimized;
+        }
+        private void Maximise_Click(object sender, RoutedEventArgs e)
+        {
+            switch (window.WindowState)
+            {
+                case WindowState.Normal:
+                    window.WindowState = WindowState.Maximized;
+                    break;
+                case WindowState.Maximized:
+                    window.WindowState = WindowState.Normal;
+                    break;
+            }
+        }
+
+        private void BoutonApropos_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show($"Cette application a été réalisée par les étudiants en BUT Informatique : LADRETTE Irwin, MADMAR Mounir, DE GABAÏ Aurélien. Dans l'objectif de gérer des affectations à des missions humanitaires.", "A propos", MessageBoxButton.OK, MessageBoxImage.Information);
+
+        }
+
+        private void ListView_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+            this.lvAffectRecherche.Items.Clear();
+            foreach (Affectation a in this.lvAffectations.Items)
+            {
+                foreach (Division z in this.listeDivisions.SelectedItems)
+                {
+                    if (((Affectation)a).UneDivision.CodeDivision == ((Division)z).CodeDivision && !this.lvAffectRecherche.Items.Contains(a))
+                    {
+                        this.lvAffectRecherche.Items.Add((Affectation)a);
+                    }
+                }
+
+                foreach (Mission w in this.listeMiss.SelectedItems)
+                {
+                    if (((Affectation)a).UneMission.CodeMission == ((Mission)w).CodeMission && !this.lvAffectRecherche.Items.Contains(a))
+                    {
+                        this.lvAffectRecherche.Items.Add((Affectation)a);
+                    }
+                }
+            }
+        }
+
+
+
+        private void selectAll_Click(object sender, RoutedEventArgs e)
+        {
+            this.listeDivisions.SelectAll();
+
+        }
+
+        private void unSelectAll_Click(object sender, RoutedEventArgs e)
+        {
+            this.listeDivisions.UnselectAll();
+        }
+
+        private void selectAllM_Click(object sender, RoutedEventArgs e)
+        {
+            this.listeMiss.SelectAll();
+
+        }
+
+        private void unSelectAllM_Click(object sender, RoutedEventArgs e)
+        {
+            this.listeMiss.UnselectAll();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            MainTabControl.SelectedItem = this.TB4;
+
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            MainTabControl.SelectedItem = this.TB2;
+
+        }
+
+        private void textBoxNouveauCommentaire_GotFocus(object sender, RoutedEventArgs e)
+        {
+            this.textBoxNouveauCommentaire.Text = "";
+        }
+
+        private void textBoxNouveauCommentaire_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if(this.textBoxNouveauCommentaire.Text == "")
+                this.textBoxNouveauCommentaire.Text = "Commentaire";
         }
     }
 }

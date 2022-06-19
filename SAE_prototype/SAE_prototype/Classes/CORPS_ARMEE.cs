@@ -5,9 +5,9 @@ using System.Text;
 
 namespace SAE_prototype
 {
-    public class CORPS_ARMEE : Crud<CORPS_ARMEE>
+    public class Corps_Armee : Crud<Corps_Armee>
     {
-        public CORPS_ARMEE()
+        public Corps_Armee()
         {
 
         }
@@ -35,21 +35,21 @@ namespace SAE_prototype
         {
             throw new NotImplementedException();
         }
-        public List<CORPS_ARMEE> FindAll()
+        public List<Corps_Armee> FindAll()
         {
-            List<CORPS_ARMEE> listeGroupes = new List<CORPS_ARMEE>();
+            List<Corps_Armee> listeGroupes = new List<Corps_Armee>();
             DataAccess access = new DataAccess();
             SqlDataReader reader;
             try
             {
                 if (access.openConnection())
                 {
-                    reader = access.getData("select * from CORPS_ARMEE;");
+                    reader = access.getData("select * from Corps_Armee;");
                     if (reader.HasRows)
                     {
                         while (reader.Read())
                         {
-                            CORPS_ARMEE unGroupe = new CORPS_ARMEE();
+                            Corps_Armee unGroupe = new Corps_Armee();
                             unGroupe.CodeCorpsArmee = reader.GetInt32(0);
                             unGroupe.LibelleCorpsArmee = reader.GetString(1);
                             listeGroupes.Add(unGroupe);
@@ -69,7 +69,7 @@ namespace SAE_prototype
             }
             return listeGroupes;
         }
-        public List<CORPS_ARMEE> FindBySelection(string criteres)
+        public List<Corps_Armee> FindBySelection(string criteres)
         {
             throw new NotImplementedException();
         }

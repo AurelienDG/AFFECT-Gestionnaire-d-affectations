@@ -5,9 +5,9 @@ using System.Text;
 
 namespace SAE_prototype
 {
-    public class MISSION : Crud<MISSION>
+    public class Mission : Crud<Mission>
     {
-        public MISSION()
+        public Mission()
         {
 
         }
@@ -30,22 +30,22 @@ namespace SAE_prototype
             throw new NotImplementedException();
         }
 
-        public List<MISSION> FindAll()
+        public List<Mission> FindAll()
         {
-            List<MISSION> listeGroupes = new List<MISSION>();
+            List<Mission> listeGroupes = new List<Mission>();
             DataAccess access = new DataAccess();
             SqlDataReader reader;
             try
             {
                 if (access.openConnection())
                 {
-                    reader = access.getData("select* from MISSION ");
+                    reader = access.getData("select* from Mission ");
                                             
                     if (reader.HasRows)
                     {
                         while (reader.Read())
                         {
-                            MISSION unGroupe = new MISSION();
+                            Mission unGroupe = new Mission();
                             unGroupe.CodeMission = reader.GetInt32(0);
                             unGroupe.LibelleMission = reader.GetString(1);
                             listeGroupes.Add(unGroupe);
@@ -66,7 +66,7 @@ namespace SAE_prototype
             return listeGroupes;
         }
 
-        public List<MISSION> FindBySelection(string criteres)
+        public List<Mission> FindBySelection(string criteres)
         {
             throw new NotImplementedException();
         }

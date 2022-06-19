@@ -5,32 +5,32 @@ using System.Text;
 
 namespace SAE_prototype
 {
-    public class AFFECTATION : Crud<AFFECTATION>
+    public class Affectation : Crud<Affectation>
     {
-        public AFFECTATION()
+        public Affectation()
         {
-            this.UneDivision = new DIVISION();
-            this.UneMission = new MISSION();
+            this.UneDivision = new Division();
+            this.UneMission = new Mission();
 
         }
-        public AFFECTATION(DIVISION UneDivision, MISSION UneMission, DateTime DateMission)
+        public Affectation(Division UneDivision, Mission UneMission, DateTime DateMission)
         {
             this.UneMission = UneMission;
             this.UneDivision = UneDivision;
             this.DateMission = DateMission;
         }
-        public AFFECTATION(DIVISION UneDivision, MISSION UneMission, DateTime DateMission, string commentaire)
+        public Affectation(Division UneDivision, Mission UneMission, DateTime DateMission, string commentaire)
         {
             this.UneMission = UneMission;
             this.UneDivision = UneDivision;
             this.DateMission = DateMission;
             this.Commentaire = commentaire;
         }
-        public MISSION UneMission
+        public Mission UneMission
         {
             get; set;
         }
-        public DIVISION UneDivision
+        public Division UneDivision
         {
             get; set;
         }
@@ -46,7 +46,7 @@ namespace SAE_prototype
         }
         public void Update()
         {
-            List<AFFECTATION> listeGroupes = new List<AFFECTATION>();
+            List<Affectation> listeGroupes = new List<Affectation>();
             DataAccess access = new DataAccess();
             SqlDataReader reader;
             try
@@ -70,7 +70,7 @@ namespace SAE_prototype
         }
         public void Create()
         {
-            List<MISSION> listeGroupes = new List<MISSION>();
+            List<Mission> listeGroupes = new List<Mission>();
             DataAccess access = new DataAccess();
             SqlDataReader reader;
             try
@@ -94,7 +94,7 @@ namespace SAE_prototype
 
         public void Delete()
         {
-            List<AFFECTATION> listeGroupes = new List<AFFECTATION>();
+            List<Affectation> listeGroupes = new List<Affectation>();
             DataAccess access = new DataAccess();
             SqlDataReader reader;
             try
@@ -115,9 +115,9 @@ namespace SAE_prototype
             }
         }
 
-        public List<AFFECTATION> FindAll()
+        public List<Affectation> FindAll()
         {
-            List<AFFECTATION> listeAffectations = new List<AFFECTATION>();
+            List<Affectation> listeAffectations = new List<Affectation>();
             DataAccess access = new DataAccess();
             SqlDataReader reader;
             try
@@ -129,7 +129,7 @@ namespace SAE_prototype
                     {
                         while (reader.Read())
                         {
-                            AFFECTATION uneAffectation = new AFFECTATION();
+                            Affectation uneAffectation = new Affectation();
                             
                             uneAffectation.UneDivision.LibelleCDivision = reader.GetString(0);
                             uneAffectation.UneMission.LibelleMission = reader.GetString(1);
@@ -158,7 +158,7 @@ namespace SAE_prototype
             return listeAffectations;
         }
 
-        public List<AFFECTATION> FindBySelection(string criteres)
+        public List<Affectation> FindBySelection(string criteres)
         {
             throw new NotImplementedException();
         }
