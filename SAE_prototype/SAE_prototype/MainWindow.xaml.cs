@@ -81,7 +81,7 @@ namespace SAE_prototype
                 this.LabelDate.Content = ((Affectation)this.lvAffectations.SelectedItem).DateMission;
             }
 
-            if (this.lvAffectations.SelectedItems.Count > 1)
+            if (this.lvAffectations.SelectedItems.Count != 1)
             {
                 MessageBox.Show("Veuillez sélectionner une seule affectation", "Attention", MessageBoxButton.OK, MessageBoxImage.Warning);
                 this.lvAffectations.SelectedItems.Clear();
@@ -90,13 +90,16 @@ namespace SAE_prototype
 
         private void BoutonSupprimer_Click(object sender, RoutedEventArgs e)
         {
-
+            if (this.lvAffectations.SelectedItems.Count > 1)
+            {
+                MessageBox.Show("Veuillez sélectionner une affectation", "Attention", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
             MessageBoxResult dialogResult = MessageBox.Show($"Voulez vous vraiment supprimer l'affectation de la division {((Affectation)this.lvAffectations.SelectedItem).UneDivision.LibelleCDivision} à la mission {((Affectation)this.lvAffectations.SelectedItem).UneMission.LibelleMission}", "Supprimer", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
             if (dialogResult == MessageBoxResult.Yes)
             {
-                if (this.lvAffectations.SelectedItems.Count == 1)
+                foreach (Affectation a in this.lvAffectations.SelectedItems)
                 {
-                    ((Affectation)this.lvAffectations.SelectedItem).Delete();
+                    a.Delete();
                 }
             }
             Actualise();
