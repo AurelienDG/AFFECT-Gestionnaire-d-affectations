@@ -4,46 +4,82 @@ using System.Data.SqlClient;
 using System.Text;
 
 namespace SAE_prototype
-{
+
+{   /// <summary>
+    /// Cette classe permet de créer et stocker une affectation ses paramètres sont une Division, une Mission, une Date et un commentaire
+    /// </summary>
     public class Affectation : Crud<Affectation>
     {
+        /// <summary>
+        /// Constructeur vide de AFFECTATION
+        /// </summary>
         public Affectation()
         {
             this.UneDivision = new Division();
             this.UneMission = new Mission();
 
         }
-        public Affectation(Division UneDivision, Mission UneMission, DateTime DateMission)
+        /// <summary>
+        /// Constructeur d'Affectation sans commentaire (division, mission, date)
+        /// </summary>
+        /// <param name="uneDivision"></param>
+        /// <param name="uneMission"></param>
+        /// <param name="dateMission"></param>
+
+        public Affectation(Division uneDivision, Mission uneMission, DateTime dateMission)
         {
-            this.UneMission = UneMission;
-            this.UneDivision = UneDivision;
-            this.DateMission = DateMission;
+            this.UneMission = uneMission;
+            this.UneDivision = uneDivision;
+            this.DateMission = dateMission;
         }
-        public Affectation(Division UneDivision, Mission UneMission, DateTime DateMission, string commentaire)
+        /// <summary>
+        /// Constructeur d'Affectation avec commentaire (division, mission, date, commentaire)
+        /// </summary>
+        /// <param name="uneDivision"></param>
+        /// <param name="uneMission"></param>
+        /// <param name="dateMission"></param>
+        /// <param name="commentaire"></param>
+        public Affectation(Division uneDivision, Mission uneMission, DateTime dateMission, string commentaire)
         {
-            this.UneMission = UneMission;
-            this.UneDivision = UneDivision;
-            this.DateMission = DateMission;
+            this.UneMission = uneMission;
+            this.UneDivision = uneDivision;
+            this.DateMission = dateMission;
             this.Commentaire = commentaire;
         }
+        /// <summary>
+        /// Propriété de la mission
+        /// </summary>
         public Mission UneMission
         {
             get; set;
         }
+        /// <summary>
+        /// Propriété de la division
+        /// </summary>
         public Division UneDivision
         {
             get; set;
         }
+        /// <summary>
+        /// Propriété de la datemission
+        /// </summary>
         public DateTime DateMission
         {
             get; set;
 
         }
+        /// <summary>
+        /// Propriété du commentaire de l'affectation
+        /// </summary>
         public string Commentaire
         {
             get; set;
 
         }
+
+        /// <summary>
+        /// Méthode pour modifer une affectation
+        /// </summary>
         public void Update()
         {
             List<Affectation> listeGroupes = new List<Affectation>();
@@ -68,6 +104,10 @@ namespace SAE_prototype
                 System.Windows.MessageBox.Show(ex.Message, "Important Message");
             }
         }
+
+        /// <summary>
+        /// Méthode pour créer une affectation
+        /// </summary>
         public void Create()
         {
             List<Mission> listeGroupes = new List<Mission>();
@@ -92,6 +132,9 @@ namespace SAE_prototype
             }
         }
 
+        /// <summary>
+        /// Méthode pour supprimer une affectation
+        /// </summary>
         public void Delete()
         {
             List<Affectation> listeGroupes = new List<Affectation>();
@@ -115,6 +158,10 @@ namespace SAE_prototype
             }
         }
 
+        /// <summary>
+        /// Méthode pour récupérer toutes les affectations de la base de donnée
+        /// </summary>
+        /// <returns></returns>
         public List<Affectation> FindAll()
         {
             List<Affectation> listeAffectations = new List<Affectation>();
@@ -158,11 +205,19 @@ namespace SAE_prototype
             return listeAffectations;
         }
 
+        /// <summary>
+        /// Méthode pour récupérer les affectations de la base de donnée avec un paramètre
+        /// </summary>
+        /// <param name="criteres"></param>
+        /// <returns></returns>
         public List<Affectation> FindBySelection(string criteres)
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Méthode pour lire une affectation
+        /// </summary>
         public void Read()
         {
             throw new NotImplementedException();
