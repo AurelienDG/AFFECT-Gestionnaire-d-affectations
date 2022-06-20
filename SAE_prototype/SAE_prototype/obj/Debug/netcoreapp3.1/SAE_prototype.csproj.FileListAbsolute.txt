@@ -81,7 +81,3 @@ C:\Users\ladre\OneDrive\Bureau\SAE 2_01\SAE_prototype\SAE_prototype\obj\Debug\ne
 C:\Users\ladre\OneDrive\Bureau\SAE 2_01\SAE_prototype\SAE_prototype\obj\Debug\netcoreapp3.1\SAE_prototype.dll
 C:\Users\ladre\OneDrive\Bureau\SAE 2_01\SAE_prototype\SAE_prototype\obj\Debug\netcoreapp3.1\SAE_prototype.pdb
 C:\Users\ladre\OneDrive\Bureau\SAE 2_01\SAE_prototype\SAE_prototype\obj\Debug\netcoreapp3.1\SAE_prototype.genruntimeconfig.cache
-P:\SAE 2.01\SAE 2_01\SAE_prototype\SAE_prototype\bin\Debug\netcoreapp3.1\Logos\16.png
-P:\SAE 2.01\SAE 2_01\SAE_prototype\SAE_prototype\bin\Debug\netcoreapp3.1\Logos\17.png
-P:\SAE 2.01\SAE 2_01\SAE_prototype\SAE_prototype\bin\Debug\netcoreapp3.1\Logos\18.png
-P:\SAE 2.01\SAE 2_01\SAE_prototype\SAE_prototype\bin\Debug\netcoreapp3.1\Logos\19.png

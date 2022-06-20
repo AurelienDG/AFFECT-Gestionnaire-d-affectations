@@ -11,9 +11,15 @@
     <None Remove="17.png" />
     <None Remove="18.png" />
     <None Remove="19.png" />
+    <None Remove="accueil.png" />
+    <None Remove="bouton-ajouter-un-fichier.png" />
+    <None Remove="bouton-modifier.png" />
+    <None Remove="crayon.png" />
     <None Remove="logo.ico" />
     <None Remove="logo.png" />
     <None Remove="minimize.png" />
+    <None Remove="search.png" />
+    <None Remove="supprimer.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,12 +31,16 @@
     <Resource Include="17.png" />
     <Resource Include="18.png" />
     <Resource Include="19.png" />
+    <Resource Include="accueil.png" />
     <Resource Include="ajout_affectation.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="bleueblancrouge.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="bouton-ajouter-un-fichier.png" />
+    <Resource Include="bouton-modifier.png" />
+    <Resource Include="crayon.png" />
     <Resource Include="date_texte.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -66,6 +76,8 @@
     <Resource Include="recherche_texte.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="search.png" />
+    <Resource Include="supprimer.png" />
   </ItemGroup>
 
   <ItemGroup>

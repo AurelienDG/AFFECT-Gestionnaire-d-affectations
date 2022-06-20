@@ -22,7 +22,7 @@ namespace SAE_prototype
     /// </summary>
     public partial class MainWindow : Window
     {
-
+        
         private ApplicationData applicationData;
         public MainWindow()
         {
@@ -293,6 +293,11 @@ namespace SAE_prototype
         {
             if(this.textBoxNouveauCommentaire.Text == "")
                 this.textBoxNouveauCommentaire.Text = "Commentaire";
+        }
+
+        private void Rectangle_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
         }
     }
 }
