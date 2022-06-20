@@ -39,10 +39,6 @@ namespace SAE_prototype
             this.DataContext = applicationData;
         }
 
-        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
 
         private void ModifierButton_Click(object sender, RoutedEventArgs e)
         {
@@ -81,7 +77,7 @@ namespace SAE_prototype
                 this.LabelDate.Content = ((Affectation)this.lvAffectations.SelectedItem).DateMission;
             }
 
-            if (this.lvAffectations.SelectedItems.Count != 1)
+            if (this.lvAffectations.SelectedItems.Count > 1)
             {
                 MessageBox.Show("Veuillez sélectionner une seule affectation", "Attention", MessageBoxButton.OK, MessageBoxImage.Warning);
                 this.lvAffectations.SelectedItems.Clear();
@@ -230,7 +226,7 @@ namespace SAE_prototype
             this.lvAffectRecherche.Items.Clear();
             foreach (Affectation a in this.lvAffectations.Items)
             {
-                foreach (Division z in this.listeDivisions.SelectedItems)
+                foreach (Division z in this.lvDivisions.SelectedItems)
                 {
                     if (((Affectation)a).UneDivision.CodeDivision == ((Division)z).CodeDivision && !this.lvAffectRecherche.Items.Contains(a))
                     {
@@ -247,18 +243,32 @@ namespace SAE_prototype
                 }
             }
         }
+        private void lvCorpsArmee_SelectChange(object sender, SelectionChangedEventArgs e)
+        {
+            this.lvAffectRecherche.Items.Clear();
+            foreach (Affectation a in this.lvAffectations.Items)
+            {
+                foreach (Division d in this.lvDivisions.Items)
+                {
+                    if (d.UncorpsArmee.CodeCorpsArmee == a.UneDivision.UncorpsArmee.CodeCorpsArmee)
+                    {
+                        this.lvAffectRecherche.Items.Add(a);
+                    }
 
+                }
+            }
+        }
 
 
         private void selectAll_Click(object sender, RoutedEventArgs e)
         {
-            this.listeDivisions.SelectAll();
+            this.lvDivisions.SelectAll();
 
         }
 
         private void unSelectAll_Click(object sender, RoutedEventArgs e)
         {
-            this.listeDivisions.UnselectAll();
+            this.lvDivisions.UnselectAll();
         }
 
         private void selectAllM_Click(object sender, RoutedEventArgs e)
@@ -299,5 +309,7 @@ namespace SAE_prototype
         {
             this.DragMove();
         }
+
+
     }
 }

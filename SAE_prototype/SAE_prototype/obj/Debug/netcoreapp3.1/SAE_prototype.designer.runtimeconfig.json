@@ -6,8 +6,8 @@
       "version": "3.1.0"
     },
     "additionalProbingPaths": [
-      "C:\\Users\\ladretti\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\ladretti\\.nuget\\packages",
+      "C:\\Users\\madmarm\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\madmarm\\.nuget\\packages",
       "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
     ],
     "configProperties": {
